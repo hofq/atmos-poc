@@ -1,0 +1,45 @@
+name: Pull Request
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, closed, labeled, unlabeled]
+
+jobs:
+  atmos-affected:
+    runs-on: ubuntu-latest
+    steps:
+      - id: affected
+        uses: cloudposse/github-action-atmos-affected-stacks@v6
+        with:
+          atmos-config-path: ./
+          atmos-version: 1.99.0
+          nested-matrices-count: 1
+
+    outputs:
+      matrix: ${{ steps.affected.outputs.matrix }}
+      has-affected-stacks: ${{ steps.affected.outputs.has-affected-stacks }}
+
+  # This job is an example how to use the affected stacks with the matrix strategy
+  atmos-plan:
+    needs: ["atmos-affected"]
+    if: ${{ needs.atmos-affected.outputs.has-affected-stacks == 'true' }}
+    name: Plan ${{ matrix.stack_slug }}
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 10
+      fail-fast: false # Don't fail fast to avoid locking TF State
+      matrix: ${{ fromJson(needs.atmos-affected.outputs.matrix) }}
+    ## Avoid running the same stack in parallel mode (from different workflows)
+    concurrency:
+      group: ${{ matrix.stack_slug }}
+      cancel-in-progress: false
+    steps:
+      - name: Plan Atmos Component
+        uses: cloudposse/github-action-atmos-terraform-plan@v4
+        with:
+          component: ${{ matrix.component }}
+          stack: ${{ matrix.stack }}
+          atmos-config-path: ./
+          atmos-version: 1.99.0
+          pr-comment: true
+

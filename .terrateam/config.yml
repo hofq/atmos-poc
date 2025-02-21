@@ -1,7 +1,0 @@
-dirs:
-  foo:
-    tags: [fo]
-    when_modified:
-      file_patterns: ["*.tf"]
-  bar:
-    tags: [bar]

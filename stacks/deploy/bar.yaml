@@ -1,0 +1,8 @@
+vars:
+  stage: dev1
+
+components:
+  terraform:
+    pet:
+      vars:
+        anzahl: 10
