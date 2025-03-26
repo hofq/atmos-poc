@@ -6,3 +6,5 @@ vars:
 components:
   terraform:
     pet:
+      vars:
+        anzahl: 1
