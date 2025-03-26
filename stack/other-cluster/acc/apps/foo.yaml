@@ -1,5 +1,7 @@
 vars:
-  stage: dev
+  environment: other
+  stage: acc
+  app: foo
 
 components:
   terraform:
