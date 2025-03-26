@@ -1,7 +1,7 @@
 name: Pull Request
 on:
   pull_request:
-    branches: ["main"]
+    branches: ["hofq"]
     types: [opened, synchronize, reopened, closed, labeled, unlabeled]
 env:
   ATMOS_VERSION: 1.167.0
