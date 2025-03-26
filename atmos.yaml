@@ -9,12 +9,14 @@ components:
     auto_generate_backend_file: false
 
 stacks:
-  base_path: "stacks"
+  base_path: "stack"
   included_paths:
-    - "deploy/**/*"
+    - "**/**/**/*"
+    - "**/**/*"
+    - "**/*"
   excluded_paths:
     - "**/_defaults.yaml"
-  name_pattern: "{stage}"
+  name_pattern: "{environment}-{stage}-{app}"
 
 logs:
   level: Info

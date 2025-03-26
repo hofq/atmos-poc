@@ -1,0 +1,8 @@
+vars:
+  environment: central
+  stage: prod
+  app: foo
+
+components:
+  terraform:
+    pet:

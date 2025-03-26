@@ -3,7 +3,8 @@ on:
   pull_request:
     branches: ["main"]
     types: [opened, synchronize, reopened, closed, labeled, unlabeled]
-
+env:
+  ATMOS_VERSION: 1.167.0
 jobs:
   atmos-affected:
     runs-on: ubuntu-latest
@@ -12,7 +13,7 @@ jobs:
         uses: cloudposse/github-action-atmos-affected-stacks@v6
         with:
           atmos-config-path: ./
-          atmos-version: 1.99.0
+          atmos-version: ${{ env.ATMOS_VERSION }}
           nested-matrices-count: 1
 
     outputs:
@@ -40,7 +41,7 @@ jobs:
       - name: Setup atmos
         uses: cloudposse/github-action-setup-atmos@v2
         with:
-          atmos-version: 1.99.0
+          atmos-version: ${{ env.ATMOS_VERSION }}
       - name: Cache .terraform
         id: cache
         uses: actions/cache@v4
@@ -87,7 +88,7 @@ jobs:
       - name: Setup atmos
         uses: cloudposse/github-action-setup-atmos@v2
         with:
-          atmos-version: 1.99.0
+          atmos-version: ${{ env.ATMOS_VERSION }}
       # - name: download artifact
       #   uses: actions/download-artifact@v4
       #   with:
