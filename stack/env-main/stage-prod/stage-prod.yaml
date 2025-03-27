@@ -1,8 +1,7 @@
-vars:
-  stage: dev1
-
+import:
+- ../env-main.yaml
 components:
   terraform:
     pet:
       vars:
-        anzahl: 1
+        anzahl: 4

@@ -16,6 +16,8 @@ stacks:
     - "**/*"
   excluded_paths:
     - "**/_defaults.yaml"
+    - "**/**/stage-*"
+    - "**/**/env-*"
   name_pattern: "{environment}-{stage}-{app}"
 
 logs:

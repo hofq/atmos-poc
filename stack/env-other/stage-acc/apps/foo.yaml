@@ -1,0 +1,13 @@
+import:
+- ../stage-acc.yaml
+vars:
+  environment: other
+  stage: acc
+  app: foo
+
+
+components:
+  terraform:
+    pet:
+      vars:
+        anzahl: 5

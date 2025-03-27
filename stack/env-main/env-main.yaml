@@ -1,8 +1,6 @@
-vars:
-  stage: dev
-
 components:
   terraform:
     pet:
       vars:
-        anzahl: 10
+        anzahl: 1
+
