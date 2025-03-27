@@ -14,8 +14,7 @@ jobs:
           atmos-config-path: ./
           atmos-version: ${{ env.ATMOS_VERSION }}
           nested-matrices-count: 1
-          default-branch: ${{ github.event.pull_request.head.ref }}
-          base-ref: hofq
+          # default-branch: ${{ github.event.pull_request.head.ref }}
 
     outputs:
       matrix: ${{ steps.affected.outputs.matrix }}
