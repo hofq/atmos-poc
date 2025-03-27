@@ -1,10 +1,10 @@
 vars:
-  environment: central
+  environment: main
   stage: prod
-  app: foo
+  app: bar
 
 components:
   terraform:
     pet:
       vars:
-        anzahl: 1
+        anzahl: 5

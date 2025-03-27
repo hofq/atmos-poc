@@ -1,5 +1,5 @@
 vars:
-  environment: central
+  environment: main
 
 components:
   terraform:
