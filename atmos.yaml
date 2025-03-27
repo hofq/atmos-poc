@@ -11,8 +11,6 @@ components:
 stacks:
   base_path: "stack"
   included_paths:
-    - "**/**/**/*"
-    - "**/**/*"
     - "**/*"
   excluded_paths:
     - "**/_defaults.yaml"
@@ -27,7 +25,7 @@ logs:
 integrations:
   github:
     gitops:
-      infracost-enabled: true
+      infracost-enabled: false
       matrix:
         sort-by: .stack_slug
         group-by: .stack_slug | split("-") | [.[0], .[2]] | join("-")
