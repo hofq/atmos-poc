@@ -3,3 +3,4 @@ components:
     pet:
       vars:
         anzahl: 1
+
