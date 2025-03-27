@@ -1,4 +1,5 @@
 vars:
+  environment: main
   stage: dev
 
 components:
