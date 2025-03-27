@@ -1,10 +1,12 @@
 vars:
   environment: other
   stage: acc
-  app: foo
+  app: bar
+import:
+- ../stage-acc.yaml
 
 components:
   terraform:
     pet:
       vars:
-        anzahl: 5
+        anzahl: 1

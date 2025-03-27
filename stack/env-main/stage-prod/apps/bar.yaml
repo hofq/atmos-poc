@@ -1,9 +1,12 @@
 vars:
   environment: main
-  stage: dev
+  stage: prod
+  app: bar
+imports:
+- ../stage.yaml
 
 components:
   terraform:
     pet:
       vars:
-        anzahl: 4
+        anzahl: 5
