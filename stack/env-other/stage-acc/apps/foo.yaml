@@ -1,9 +1,10 @@
+import:
+- ../stage-acc.yaml
 vars:
   environment: other
   stage: acc
   app: foo
-import:
-- ../stage-acc.yaml
+
 
 components:
   terraform:

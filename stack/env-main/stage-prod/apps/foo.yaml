@@ -1,9 +1,10 @@
+imports:
+- ../stage.yaml
 vars:
   environment: main
   stage: prod
   app: foo
-imports:
-- ../stage.yaml
+
 
 components:
   terraform:
