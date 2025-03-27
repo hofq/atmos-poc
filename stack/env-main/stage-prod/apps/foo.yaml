@@ -1,13 +1,7 @@
 imports:
-- ../stage.yaml
+- ../stage-prod.yaml
 vars:
   environment: main
   stage: prod
   namespace: foo
 
-
-components:
-  terraform:
-    pet:
-      vars:
-        anzahl: 1
