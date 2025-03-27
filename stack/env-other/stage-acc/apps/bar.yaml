@@ -3,7 +3,7 @@ import:
 vars:
   environment: other
   stage: acc
-  app: bar
+  namespace: bar
 
 
 components:

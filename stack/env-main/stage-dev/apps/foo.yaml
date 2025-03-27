@@ -2,12 +2,12 @@ imports:
 - ../stage.yaml
 vars:
   environment: main
-  stage: prod
-  namespace: bar
+  stage: dev
+  namespace: foo
 
 
 components:
   terraform:
     pet:
       vars:
-        anzahl: 5
+        anzahl: 1

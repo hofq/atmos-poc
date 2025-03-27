@@ -11,15 +11,21 @@ components:
 stacks:
   base_path: "stack"
   included_paths:
-    - "**/**/**/*"
-    - "**/**/*"
     - "**/*"
   excluded_paths:
     - "**/_defaults.yaml"
     - "**/**/stage-*"
     - "**/**/env-*"
-  name_pattern: "{environment}-{stage}-{app}"
+  name_pattern: "{environment}-{stage}-{namespace}"
 
 logs:
   level: Info
   file: "/dev/stderr"
+
+integrations:
+  github:
+    gitops:
+      infracost-enabled: false
+      matrix:
+        sort-by: .stack_slug
+        group-by: .stack_slug | split("-") | [.[0], .[2]] | join("-")
