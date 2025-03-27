@@ -1,0 +1,13 @@
+imports:
+- ../stage.yaml
+vars:
+  environment: main
+  stage: dev
+  namespace: foo
+
+
+components:
+  terraform:
+    pet:
+      vars:
+        anzahl: 1
