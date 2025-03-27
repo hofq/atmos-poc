@@ -14,7 +14,7 @@ jobs:
         with:
           atmos-config-path: ./
           atmos-version: ${{ env.ATMOS_VERSION }}
-          nested-matrices-count: 2
+          nested-matrices-count: 3
 
     outputs:
       matrix: ${{ steps.affected.outputs.matrix }}

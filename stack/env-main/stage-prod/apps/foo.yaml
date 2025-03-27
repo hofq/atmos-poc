@@ -3,7 +3,7 @@ imports:
 vars:
   environment: main
   stage: prod
-  app: foo
+  namespace: foo
 
 
 components:
