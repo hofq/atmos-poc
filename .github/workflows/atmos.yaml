@@ -13,7 +13,7 @@ jobs:
         with:
           atmos-config-path: ./
           atmos-version: ${{ env.ATMOS_VERSION }}
-          nested-matrices-count: 3
+          nested-matrices-count: 2
           default-branch: ${{ github.event.pull_request.head.ref }}
 
     outputs:
