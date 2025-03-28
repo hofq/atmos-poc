@@ -14,6 +14,8 @@ jobs:
           atmos-config-path: ./
           atmos-version: ${{ env.ATMOS_VERSION }}
           nested-matrices-count: 2
+          base-ref: ${{ github.event.pull_request.base.sha }}
+          head-ref: ${{ github.event.pull_request.head.sha }}
           # default-branch: ${{ github.event.pull_request.head.ref }}
 
     outputs:
