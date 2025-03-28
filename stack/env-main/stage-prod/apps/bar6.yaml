@@ -1,7 +1,7 @@
-imports:
-- ../stage-prod.yaml
 vars:
   namespace: bar6
+imports:
+- ../stage-prod.yaml
 
 
 components:
