@@ -1,8 +1,7 @@
-imports:
-- ../stage-prod.yaml
 vars:
   namespace: bar2
-
+imports:
+- ../stage-prod.yaml
 
 components:
   terraform:

@@ -3,7 +3,6 @@ vars:
 imports:
 - ../stage-prod.yaml
 
-
 components:
   terraform:
     wt:
