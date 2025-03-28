@@ -1,5 +1,8 @@
 import:
 - ../env-main.yaml
+vars:
+  environment: main
+  stage: prod
 components:
   terraform:
     pet:

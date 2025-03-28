@@ -13,7 +13,7 @@ jobs:
         with:
           atmos-config-path: ./
           atmos-version: ${{ env.ATMOS_VERSION }}
-          nested-matrices-count: 1
+          nested-matrices-count: 2
           # default-branch: ${{ github.event.pull_request.head.ref }}
 
     outputs:
@@ -68,7 +68,7 @@ jobs:
   atmos-apply:
     needs: ["atmos-affected", "atmos-plan"]
     if: ${{ needs.atmos-affected.outputs.has-affected-stacks == 'true' }}
-    name: Plan ${{ matrix.stack_slug }}
+    name: Apply ${{ matrix.stack_slug }}
     runs-on: ubuntu-latest
     environment:
       name: apply
