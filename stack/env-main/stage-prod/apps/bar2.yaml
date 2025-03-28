@@ -1,4 +1,6 @@
 vars:
+  environment: main
+  stage: prod
   namespace: bar2
 imports:
 - ../stage-prod.yaml
