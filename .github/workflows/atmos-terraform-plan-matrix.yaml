@@ -41,7 +41,7 @@ jobs:
   atmos-plan:
     if: ${{ inputs.stacks != '{include:[]}' }}
     name: ${{ matrix.stack_slug }}
-    runs-on: ["self-hosted", "terraform"]
+    runs-on: ubuntu-latest
     continue-on-error: ${{ inputs.continue-on-error == 'true' }}
     strategy:
       max-parallel: 1
