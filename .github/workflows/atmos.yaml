@@ -33,5 +33,5 @@ jobs:
       fail-fast: false # Don't fail fast to avoid locking TF State
     with:
       stacks: ${{ matrix.items }}
-      atmos-version: ${{ env.ATMOS_VERSION }}
+      atmos-version: 1.167.0
       sha: ${{ github.event.pull_request.head.sha }}
