@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, closed, labeled, unlabeled]
 env:
-  ATMOS_VERSION: 1.167.0
+  ATMOS_VERSION: 1.,167.0
 jobs:
   atmos-affected:
     runs-on: ubuntu-latest
@@ -35,3 +35,4 @@ jobs:
       stacks: ${{ matrix.items }}
       atmos-version: 1.167.0
       sha: ${{ github.event.pull_request.head.sha }}
+      atmos-config-path: ./rootfs/usr/local/etc/atmos/
