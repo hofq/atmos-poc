@@ -11,6 +11,7 @@ components:
 stacks:
   base_path: "stack"
   included_paths:
+    - "**/**/*"
     - "**/*"
   excluded_paths:
     - "**/_defaults.yaml"
