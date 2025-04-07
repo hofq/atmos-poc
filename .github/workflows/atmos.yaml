@@ -26,6 +26,7 @@ jobs:
     needs: ["atmos-affected"]
     if: ${{ needs.atmos-affected.outputs.has-affected-stacks == 'true' }}
     name: Plan (${{ matrix.name }})
+    secrets: inherit
     uses: ./.github/workflows/atmos-terraform-plan-matrix.yaml
     strategy:
       matrix: ${{ fromJson(needs.atmos-affected.outputs.stacks) }}
