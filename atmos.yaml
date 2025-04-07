@@ -28,6 +28,9 @@ integrations:
     gitops:
       artifact-storage:
         plan-repository-type: azureblob
+        metadata-repository-type: cosmos
+        blob-account-name: poccc
+        blob-container-name: plans
       infracost-enabled: false
       matrix:
         sort-by: .stack_slug
