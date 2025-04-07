@@ -34,7 +34,7 @@ integrations:
         cosmos-container-name: poccc
         cosmos-database-name: terraform-plan-storage
         cosmos-endpoint: "https://poccc.documents.azure.com:443/"
-      infracost-enabled: false
+      # infracost-enabled: false
       matrix:
         sort-by: .stack_slug
         group-by: .stack_slug | split("-") | [.[0], .[2]] | join("-")
