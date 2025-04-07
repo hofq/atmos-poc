@@ -3,14 +3,15 @@ base_path: "./"
 components:
   terraform:
     base_path: "components/terraform"
-    apply_auto_approve: false
-    deploy_run_init: true
-    init_run_reconfigure: true
-    auto_generate_backend_file: false
+    # apply_auto_approve: false
+    # deploy_run_init: true
+    # init_run_reconfigure: true
+    # auto_generate_backend_file: false
 
 stacks:
   base_path: "stack"
   included_paths:
+    - "**/**/*"
     - "**/*"
   excluded_paths:
     - "**/_defaults.yaml"
@@ -25,7 +26,25 @@ logs:
 integrations:
   github:
     gitops:
-      infracost-enabled: false
+      role: 
+        plan: ""
+      artifact-storage:
+        plan-repository-type: azureblob
+        metadata-repository-type: cosmos
+        blob-account-name: poccc
+        blob-container-name: plans
+        cosmos-container-name: poccc
+        cosmos-database-name: terraform-plan-storage
+        cosmos-endpoint: "https://poccc.documents.azure.com:443/"
+      # infracost-enabled: false
       matrix:
         sort-by: .stack_slug
         group-by: .stack_slug | split("-") | [.[0], .[2]] | join("-")
+
+terraform:
+  backend_type: azurerm
+  backend:
+    azurerm:
+      resource_group_name: "ATMOS_POC_JK_Test"
+      storage_account_name: "poccc"
+      container_name: "tfstate"

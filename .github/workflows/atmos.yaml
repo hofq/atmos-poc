@@ -13,99 +13,26 @@ jobs:
         with:
           atmos-config-path: ./
           atmos-version: ${{ env.ATMOS_VERSION }}
-          nested-matrices-count: 1
+          # nested-matrices-count: 2
+          base-ref: ${{ github.event.pull_request.base.sha }}
+          head-ref: ${{ github.event.pull_request.head.sha }}
           # default-branch: ${{ github.event.pull_request.head.ref }}
 
     outputs:
-      matrix: ${{ steps.affected.outputs.matrix }}
+      stacks: ${{ steps.affected.outputs.matrix }}
       has-affected-stacks: ${{ steps.affected.outputs.has-affected-stacks }}
 
   atmos-plan:
     needs: ["atmos-affected"]
     if: ${{ needs.atmos-affected.outputs.has-affected-stacks == 'true' }}
-    name: Plan ${{ matrix.stack_slug }}
-    runs-on: ubuntu-latest
+    name: Plan (${{ matrix.name }})
+    uses: ./.github/workflows/atmos-terraform-plan-matrix.yaml
     strategy:
-      max-parallel: 10
-      fail-fast: false
-      matrix: ${{ fromJson(needs.atmos-affected.outputs.matrix) }}
-    ## Avoid running the same stack in parallel mode (from different workflows)
-    concurrency:
-      group: ${{ matrix.stack_slug }}
-      cancel-in-progress: false
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup terraform
-        uses: hashicorp/setup-terraform@v3
-      - name: Setup atmos
-        uses: cloudposse/github-action-setup-atmos@v2
-        with:
-          atmos-version: ${{ env.ATMOS_VERSION }}
-      - name: Cache .terraform
-        id: cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ./components/terraform/${{ matrix.component }}/.terraform/providers
-          key: ${{ hashFiles(format('./components/terraform/{0}/provider.tf', matrix.component )) }}
-      - name: Run plan
-        shell: bash
-        run: |
-          set +e
-          atmos terraform plan ${{ matrix.component }} \
-          --stack ${{ matrix.stack }} \
-          -out ${PWD}/${{ matrix.component }}_${{ matrix.stack }}.tfplan \
-          -lock=false \
-          -input=false \
-          -no-color
-      # - name: Upload Artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: ${{ matrix.component }}_${{ matrix.stack }}_plan
-      #     path: ${{ matrix.component }}_${{ matrix.stack }}.tfplan
-      #     retention-days: 1
-  atmos-apply:
-    needs: ["atmos-affected", "atmos-plan"]
-    if: ${{ needs.atmos-affected.outputs.has-affected-stacks == 'true' }}
-    name: Plan ${{ matrix.stack_slug }}
-    runs-on: ubuntu-latest
-    environment:
-      name: apply
-    strategy:
-      max-parallel: 10
-      fail-fast: false
-      matrix: ${{ fromJson(needs.atmos-affected.outputs.matrix) }}
-    ## Avoid running the same stack in parallel mode (from different workflows)
-    concurrency:
-      group: ${{ matrix.stack_slug }}
-      cancel-in-progress: false
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup terraform
-        uses: hashicorp/setup-terraform@v3
-      - name: Setup atmos
-        uses: cloudposse/github-action-setup-atmos@v2
-        with:
-          atmos-version: ${{ env.ATMOS_VERSION }}
-      # - name: download artifact
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: ${{ matrix.component }}_${{ matrix.stack }}_plan
-      - name: Cache .terraform
-        id: cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ./components/terraform/${{ matrix.component }}/.terraform/providers
-          key: ${{ hashFiles(format('./components/terraform/{0}/provider.tf', matrix.component )) }}
-      - name: Run apply
-        shell: bash
-        run: |
-          set +e
-          atmos terraform apply ${{ matrix.component }} \
-          --stack ${{ matrix.stack }} \
-          -auto-approve \
-          -input=false \
-          -no-color
+      matrix: ${{ fromJson(needs.atmos-affected.outputs.stacks) }}
+      max-parallel: 1 # This is important to avoid ddos GHA API
+      fail-fast: false # Don't fail fast to avoid locking TF State
+    with:
+      stacks: ${{ matrix.items }}
+      atmos-version: "1.167.0"
+      sha: ${{ github.event.pull_request.head.sha }}
+      atmos-config-path: ./rootfs/usr/local/etc/atmos/

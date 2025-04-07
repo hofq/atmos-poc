@@ -1,10 +1,9 @@
 vars:
   environment: main
   stage: prod
-  namespace: bar
+  namespace: bar8
 imports:
 - ../stage-prod.yaml
-
 
 components:
   terraform:
