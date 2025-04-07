@@ -54,8 +54,7 @@ jobs:
     steps:
       # - uses: unfor19/install-aws-cli-action@v1
       - name: Setup Atmos
-        uses: cloudposse/github-action-setup-atmos
-        
+        uses: cloudposse/github-action-setup-atmos@v2
       - name: Plan Atmos Component
         uses: cloudposse/github-action-atmos-terraform-plan@v3
         with:
