@@ -53,14 +53,14 @@ jobs:
       cancel-in-progress: false
     steps:
       # - uses: unfor19/install-aws-cli-action@v1
+      - name: echo credential
+        run: |
+          echo "${{ secrets.AZURE_CREDENTIALS }}"
       - name: Setup Atmos
         uses: cloudposse/github-action-setup-atmos@v2
       - uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          client-id: ""
-          subscription-id: ""
-          tenant-id: ""
       - name: Plan Atmos Component
         uses: cloudposse/github-action-atmos-terraform-plan@v4
         with:
