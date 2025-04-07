@@ -58,6 +58,7 @@ jobs:
       - uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
       - name: Plan Atmos Component
         uses: cloudposse/github-action-atmos-terraform-plan@v4
         with:
