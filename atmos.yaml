@@ -26,6 +26,8 @@ logs:
 integrations:
   github:
     gitops:
+      artifact-storage:
+        plan-repository-type: azureblob
       infracost-enabled: false
       matrix:
         sort-by: .stack_slug
@@ -36,5 +38,5 @@ terraform:
   backend:
     azurerm:
       resource_group_name: "ATMOS_POC_JK_Test"
-      storage_account_name: "abcd1234"
+      storage_account_name: "poccc"
       container_name: "tfstate"
