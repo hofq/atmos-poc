@@ -23,10 +23,10 @@ logs:
   level: Info
   file: "/dev/stderr"
 
-# integrations:
-#   github:
-#     gitops:
-#       infracost-enabled: false
-#       matrix:
-#         sort-by: .stack_slug
-#         group-by: .stack_slug | split("-") | [.[0], .[2]] | join("-")
+integrations:
+  github:
+    gitops:
+      infracost-enabled: false
+      matrix:
+        sort-by: .stack_slug
+        group-by: .stack_slug | split("-") | [.[0], .[2]] | join("-")
