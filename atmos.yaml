@@ -27,6 +27,7 @@ integrations:
   github:
     gitops:
       artifact-storage:
+        region: ""
         plan-repository-type: azureblob
         metadata-repository-type: cosmos
         blob-account-name: poccc
