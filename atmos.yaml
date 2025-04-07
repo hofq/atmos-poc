@@ -26,8 +26,6 @@ logs:
 integrations:
   github:
     gitops:
-      role: 
-        plan: ""
       artifact-storage:
         plan-repository-type: azureblob
         metadata-repository-type: cosmos
