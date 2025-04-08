@@ -1,0 +1,7 @@
+terraform:
+  backend_type: azurerm
+  backend:
+    azurerm:
+      resource_group_name: "ATMOS_POC_JK_Test"
+      storage_account_name: "poccc"
+      container_name: "tfstate"
