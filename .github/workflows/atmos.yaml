@@ -36,4 +36,4 @@ jobs:
       stacks: ${{ matrix.items }}
       atmos-version: "1.167.0"
       sha: ${{ github.event.pull_request.head.sha }}
-      atmos-config-path: ./rootfs/usr/local/etc/atmos/
+      atmos-config-path: ./
