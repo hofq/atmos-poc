@@ -60,8 +60,8 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: set Storage Account Credentials
         run: |
-          RESOURCE_GROUP_NAME=${{ var.RESOURCE_GROUP_NAME }}
-          STORAGE_ACCOUNT_NAME=${{ var.STORAGE_ACCOUNT_NAME }}
+          RESOURCE_GROUP_NAME=${{ env.RESOURCE_GROUP_NAME }}
+          STORAGE_ACCOUNT_NAME=${{ env.STORAGE_ACCOUNT_NAME }}
           echo "ACCOUNT_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME --account-name $STORAGE_ACCOUNT_NAME --query '[0].value' -o tsv)" >> $GITHUB_ENV
       - name: Plan Atmos Component
         uses: cloudposse/github-action-atmos-terraform-plan@v4
