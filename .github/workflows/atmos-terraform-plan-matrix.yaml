@@ -70,4 +70,4 @@ jobs:
           # infracost-api-key: ${{ secrets.INFRACOST_API_KEY }}
           sha: ${{ inputs.sha }}
           atmos-version: ${{ inputs.atmos-version }}
-          atmos-config-path: ${{ inputs.atmos-config-path }}
+          # atmos-config-path: ${{ inputs.atmos-config-path }}
