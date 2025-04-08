@@ -58,11 +58,6 @@ jobs:
       - uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: set Storage Account Credentials
-        run: |
-          RESOURCE_GROUP_NAME=${{ env.RESOURCE_GROUP_NAME }}
-          STORAGE_ACCOUNT_NAME=${{ env.STORAGE_ACCOUNT_NAME }}
-          echo "ACCOUNT_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME --account-name $STORAGE_ACCOUNT_NAME --query '[0].value' -o tsv)" >> $GITHUB_ENV
       - name: Plan Atmos Component
         uses: cloudposse/github-action-atmos-terraform-plan@v4
         with:
@@ -73,3 +68,18 @@ jobs:
           sha: ${{ inputs.sha }}
           atmos-version: ${{ inputs.atmos-version }}
           atmos-config-path: ${{ inputs.atmos-config-path }}
+      - name: Store Plan
+        uses: cloudposse/github-action-terraform-plan-storage@v1
+        id: store-plan
+        with:
+          action: storePlan
+          planPath: ${{ matrix.stack_slug }}.tfplan
+          component: ${{ matrix.component }}
+          stack: ${{ matrix.stack }}
+          planRepositoryType: azureblob
+          blobAccountName: poccc
+          blobContainerName: plans
+          metadataRepositoryType: cosmos
+          cosmosContainerName: poccc
+          cosmosDatabaseName: terraform-plan-storage
+          cosmosEndpoint: "https://poccc.documents.azure.com:443/"
