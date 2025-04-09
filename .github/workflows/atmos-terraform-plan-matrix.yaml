@@ -69,7 +69,7 @@ jobs:
           atmos-version: ${{ inputs.atmos-version }}
           atmos-config-path: ${{ inputs.atmos-config-path }}
       - name: Store Plan
-        uses: cloudposse/github-action-terraform-plan-storage@v1
+        uses: cloudposse/github-action-terraform-plan-storage@v2
         id: store-plan
         with:
           action: StorePlan
