@@ -72,7 +72,7 @@ jobs:
         uses: cloudposse/github-action-terraform-plan-storage@v2
         id: store-plan
         with:
-          action: StorePlan
+          action: storePlan
           planPath: ${{ matrix.stack_slug }}.tfplan
           component: ${{ matrix.component }}
           stack: ${{ matrix.stack }}
