@@ -68,18 +68,18 @@ jobs:
           sha: ${{ inputs.sha }}
           atmos-version: ${{ inputs.atmos-version }}
           atmos-config-path: ${{ inputs.atmos-config-path }}
-      - name: Store Plan
-        uses: cloudposse/github-action-terraform-plan-storage@v2
-        id: store-plan
-        with:
-          action: storePlan
-          planPath: ${{ matrix.stack_slug }}.tfplan
-          component: ${{ matrix.component }}
-          stack: ${{ matrix.stack }}
-          planRepositoryType: azureblob
-          blobAccountName: poccc
-          blobContainerName: plans
-          metadataRepositoryType: cosmos
-          cosmosContainerName: poccc
-          cosmosDatabaseName: terraform-plan-storage
-          cosmosEndpoint: "https://poccc.documents.azure.com:443/"
+      # - name: Store Plan
+      #   uses: cloudposse/github-action-terraform-plan-storage@v2
+      #   id: store-plan
+      #   with:
+      #     action: storePlan
+      #     planPath: ${{ matrix.stack_slug }}.tfplan
+      #     component: ${{ matrix.component }}
+      #     stack: ${{ matrix.stack }}
+      #     planRepositoryType: azureblob
+      #     blobAccountName: poccc
+      #     blobContainerName: plans
+      #     metadataRepositoryType: cosmos
+      #     cosmosContainerName: poccc
+      #     cosmosDatabaseName: terraform-plan-storage
+      #     cosmosEndpoint: "https://poccc.documents.azure.com:443/"
