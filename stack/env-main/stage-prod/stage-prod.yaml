@@ -3,6 +3,7 @@ import:
 vars:
   environment: main
   stage: prod
+  
 components:
   terraform:
     pet:

@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, closed, labeled, unlabeled]
 env:
-  ATMOS_VERSION: 1.167.0
+  ATMOS_VERSION: 1.170.0
 jobs:
   atmos-affected:
     runs-on: ubuntu-latest
@@ -26,6 +26,7 @@ jobs:
     needs: ["atmos-affected"]
     if: ${{ needs.atmos-affected.outputs.has-affected-stacks == 'true' }}
     name: Plan (${{ matrix.name }})
+    secrets: inherit
     uses: ./.github/workflows/atmos-terraform-plan-matrix.yaml
     strategy:
       matrix: ${{ fromJson(needs.atmos-affected.outputs.stacks) }}
@@ -35,4 +36,4 @@ jobs:
       stacks: ${{ matrix.items }}
       atmos-version: "1.167.0"
       sha: ${{ github.event.pull_request.head.sha }}
-      atmos-config-path: ./rootfs/usr/local/etc/atmos/
+      atmos-config-path: ./

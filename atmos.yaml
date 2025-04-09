@@ -6,7 +6,7 @@ components:
     # apply_auto_approve: false
     # deploy_run_init: true
     # init_run_reconfigure: true
-    # auto_generate_backend_file: false
+    auto_generate_backend_file: true
 
 stacks:
   base_path: "stack"
@@ -22,12 +22,10 @@ stacks:
 logs:
   level: Info
   file: "/dev/stderr"
-
+auto_generate_backend_file: true
 integrations:
   github:
     gitops:
-      role: 
-        plan: ""
       artifact-storage:
         plan-repository-type: azureblob
         metadata-repository-type: cosmos
@@ -41,10 +39,3 @@ integrations:
         sort-by: .stack_slug
         group-by: .stack_slug | split("-") | [.[0], .[2]] | join("-")
 
-terraform:
-  backend_type: azurerm
-  backend:
-    azurerm:
-      resource_group_name: "ATMOS_POC_JK_Test"
-      storage_account_name: "poccc"
-      container_name: "tfstate"
